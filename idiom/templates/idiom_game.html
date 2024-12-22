@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>成语接龙</title>
+    {% load static %}
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&family=Merriweather&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+</head>
+<body>
+    <header>
+        <img src="{% static 'images/logo.png' %}" alt="Logo" style="max-width: 150px; float: left; margin-right: 20px;">
+        <h1 style="font-size: 48px; color: slategray; font-family: 'Lato', sans-serif;">成语接龙</h1>
+        <p style="font-size: 22px; font-style: italic; color: slategray;">玩玩成语接龙~</p>
+    </header>
+
+    <main>
+        <!-- Idiom Input Form -->
+        <form method="POST">
+            {% csrf_token %}
+            <input type="text" name="idiom" placeholder="请输入一个成语，例如：一马当先" required
+                style="font-size: 18px; padding: 10px; margin: 20px 0;">
+            <button type="submit" style="padding: 10px 20px; background-color: powderblue;">提交</button>
+        </form>
+
+        <!-- Error Message -->
+        {% if error %}
+        <p class="error" style="color: red; font-size: 18px;">{{ error }}</p>
+        {% endif %}
+
+        <!-- Display Input Idiom and Results -->
+        {% if input_idiom %}
+        <section>
+            <h2 style="font-family: 'Lato', sans-serif; color: slategray;">输入成语: <strong>{{ input_idiom }}</strong></h2>
+            {% if next_idioms %}
+            <h3 style="font-family: 'Lato', sans-serif; color: slategray;">接龙成语:</h3>
+            <section class="accordion">
+                {% for idiom in next_idioms %}
+                <details style="background-color: powderblue; font-family: 'Lato', sans-serif;">
+                    <summary style="font-size: 18px;">{{ idiom.text }}</summary>
+                    <p style="font-size: 18px; color: darkblue;">{{ idiom.meaning }}</p>
+                </details>
+                {% endfor %}
+            </section>
+            {% else %}
+            <p style="font-size: 18px; color: slategray;">没有找到匹配的接龙成语。</p>
+            {% endif %}
+        </section>
+        {% endif %}
+
+    </main>
+
+    <footer style="padding: 5px; margin-top: 10px; text-align: center; font-family: 'Merriweather', serif;">
+        &copy; {{ now|date:"Y" }} Bill Zou & Vicky Feng
+    </footer>
+</body>
+</html>

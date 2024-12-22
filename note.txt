@@ -1,0 +1,21 @@
+import json
+
+# Define the input and output file paths
+input_file = r"C:\Users\recur\Desktop\WORK\chengyu_game\idiom.json"
+output_file = r"C:\Users\recur\Desktop\WORK\chengyu_game\idioms.json"
+
+# Read the original JSON file
+with open(input_file, 'r', encoding='utf-8') as infile:
+    data = json.load(infile)
+
+# Transform the data to extract 'word' as 'text' and 'explanation' as 'meaning'
+transformed_data = [
+    {"text": item["word"], "meaning": item["explanation"]}
+    for item in data
+]
+
+# Write the transformed data to the new JSON file
+with open(output_file, 'w', encoding='utf-8') as outfile:
+    json.dump(transformed_data, outfile, ensure_ascii=False, indent=4)
+
+print(f"Transformed data saved to {output_file}")
