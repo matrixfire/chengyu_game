@@ -39,7 +39,8 @@
                 {% for idiom in next_idioms %}
                 <details style="background-color: powderblue; font-family: 'Lato', sans-serif;">
                     <summary style="font-size: 18px;">{{ idiom.text }}</summary>
-                    <p style="font-size: 18px; color: darkblue;">{{ idiom.meaning }}</p>
+                    <p class="entry-date">{{ idiom.pinyin.pinyin_text }}</p>
+                    <p style="font-size: 18px; color: darkblue;" class="entry-text">{{ idiom.meaning }}</p>
                 </details>
                 {% endfor %}
             </section>

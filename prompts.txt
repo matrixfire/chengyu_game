@@ -20,3 +20,7 @@ The project is likely aimed at:
 This project serves as an educational tool that fosters language skills, cultural understanding, and cognitive engagement through the exploration of idioms. It could be particularly beneficial in a classroom setting or as a self-study resource.
 
 Overall, your Django project appears to be a well-thought-out application that combines language learning with interactive gameplay, making it both informative and enjoyable for users.
+
+
+
+
